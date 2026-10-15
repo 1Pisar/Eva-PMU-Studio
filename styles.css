@@ -1055,6 +1055,10 @@ button,input,select,textarea {
 .faq-list {
   max-width:820px;
 }
+#soft-ombre-brows-faq,
+#pmu-removal-faq {
+  scroll-margin-top: 150px;
+}
 details {
   border-bottom:1px solid #e7dcc7;
   padding:16px 4px;
@@ -1080,7 +1084,167 @@ details[open] summary:after {
 details p {
   font-size:12px;
   color:var(--muted);
-  max-width:700px;
+  max-width:750px;
+}
+
+.brow-guide {
+  max-width: 750px;
+}
+
+.brow-guide h3 {
+  margin: 8px 0;
+  color: var(--gold-dark);
+  font: 500 25px/1.2 var(--serif);
+}
+
+.brow-guide h4 {
+  margin: 20px 0 8px;
+  color: var(--gold-dark);
+  font: 700 13px/1.4 var(--sans);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.brow-guide__eyebrow {
+  margin: 18px 0 0;
+  color: var(--gold);
+  font-size: 10px !important;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.brow-guide__intro {
+  font-weight: 600;
+}
+
+.brow-steps,
+.brow-timeline,
+.brow-guide__list {
+  margin: 0;
+  padding-inline-start: 22px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.brow-steps li,
+.brow-timeline li,
+.brow-guide__list li {
+  margin: 8px 0;
+  padding-inline-start: 3px;
+}
+
+.brow-steps li::marker {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.brow-steps li p,
+.brow-timeline li p {
+  margin: 3px 0 0;
+}
+
+.brow-timeline {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+.brow-timeline li {
+  padding-left: 12px;
+  border-left: 2px solid #e7dcc7;
+}
+
+.brow-guide__cta {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--gold);
+  background: #faf6ef;
+}
+
+.brow-guide__cta h4 {
+  margin-top: 0;
+}
+
+.brow-guide__cta p:last-child {
+  margin-bottom: 0;
+}
+
+.faq-feature {
+  max-width: 750px;
+}
+
+.faq-feature h3 {
+  margin: 8px 0;
+  color: var(--gold-dark);
+  font: 500 25px/1.2 var(--serif);
+}
+
+.faq-feature h4 {
+  margin: 20px 0 8px;
+  color: var(--gold-dark);
+  font: 700 13px/1.4 var(--sans);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.faq-feature__eyebrow {
+  margin: 18px 0 0;
+  color: var(--gold);
+  font-size: 10px !important;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.faq-feature ul li::marker {
+  color: var(--gold);
+}
+
+.faq-feature .brow-guide__cta h4 {
+  margin-top: 0;
+}
+
+.removal-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-inline-start: 20px;
+  list-style: none;
+}
+
+.removal-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+  font-size: 12px;
+  color: var(--muted);
+  max-width: 750px;
+}
+
+.removal-ingredients {
+  margin: 0;
+  padding-inline-start: 20px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.removal-ingredients li {
+  margin: 4px 0;
+  max-width: 750px;
+}
+
+.removal-subheading {
+  font-weight: 700;
+  color: var(--gold-dark);
+}
+
+.removal-brand {
+  color: #b47b25;
+}
+
+.material-symbols-outlined {
+  color: var(--gold);
 }
 
 .contact {

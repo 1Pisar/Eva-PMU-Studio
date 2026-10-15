@@ -35,6 +35,27 @@ document.querySelectorAll('.main-nav a[href^="#"]').forEach(link => {
   });
 });
 
+document.querySelectorAll('[data-open-faq]').forEach(link => {
+  link.addEventListener('click', e => {
+    const target = document.getElementById(link.dataset.openFaq);
+
+    if (!target || !(target instanceof HTMLDetailsElement)) return;
+
+    e.preventDefault();
+    target.open = true;
+
+    if (window.location.hash !== `#${target.id}`) {
+      history.pushState(null, '', `#${target.id}`);
+    }
+
+    const scrollMargin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+    const targetPosition =
+      target.getBoundingClientRect().top + window.scrollY - scrollMargin;
+
+    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+  });
+});
+
 // HIGHLIGHT CURRENT SECTION
 const sections = [...document.querySelectorAll('main section[id]')];
 const navLinks = [...document.querySelectorAll('.main-nav a:not(.nav-cta)')];
