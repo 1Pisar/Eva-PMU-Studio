@@ -343,6 +343,11 @@ button,input,select,textarea {
   grid-template-columns:repeat(6,1fr);
   gap:28px;
 }
+
+.service-half {
+  display: contents;
+}
+
 .service-card {
   display:flex;
   flex-direction:column;
@@ -673,8 +678,10 @@ button,input,select,textarea {
 }
 
 .heart {
-  width: 550px;
-  height: 600px;
+  width: min(100%, 550px);
+  aspect-ratio: 11 / 12;
+  height: auto;
+  box-sizing: border-box;
   overflow: hidden;
   border-radius: 73% 27% 48% 52% / 40% 20% 80% 60%;
   border: 5px solid #ecac52;
@@ -875,6 +882,38 @@ button,input,select,textarea {
   height: 100%;
 }
 
+@media (max-width: 1300px) {
+  .service-grid {
+    display: flex;
+    flex-direction: column;
+  }
+  .service-half {
+    display: flex;
+    justify-content: center;
+    gap: 5vw;
+  }
+  .service-card {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 619px) {
+  .service-grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .service-half {
+    display: flex;
+    flex-direction: column;
+  }
+  .service-card {
+    width: 100%;
+    min-height: 120px;
+  }
+}
+
 @media (max-width: 1000px) {
   .pricing-container {
     grid-template-columns: 1fr 35%;
@@ -918,7 +957,7 @@ button,input,select,textarea {
   }
 
   .pricing-content {
-    padding: 45px 20px 30px;
+    padding: 15px 20px 30px;
     border-radius: 0;
   }
 
@@ -1549,8 +1588,14 @@ footer a {
     grid-column:auto;
   }
   .round-photo {
-    width:165px;
-    height:165px;
+    width: 120px;
+    height: 120px;
+  }
+  .service-card h3 {
+    font-size: 12px;
+  }
+  .service-card p, .service-card ul {
+    font-size: 11px;
   }
   .credentials {
     grid-template-columns:1fr;
@@ -1565,4 +1610,101 @@ footer a {
   .booking-form label:nth-last-of-type(1),.booking-form button,.form-status {
     grid-column:auto;
   }
+}
+
+@media (max-width: 425px) {
+  .round-photo {
+    width: 100px;
+    height: 100px;
+  }
+  .service-card {
+    height: 260px;
+  }
+  .section-heading {
+    gap: 8px;
+  }
+  .section-heading h2 {
+    font-size: 20px;
+    text-align: center;
+    min-width: 185px;
+  }
+  .price-description p {
+    margin: 10px 0 2px;
+  }
+  .description-width {
+    max-width: 80%;
+  }
+  .price-description p {
+    width: 100%;
+  }
+    .price-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .price-description {
+    display: contents;
+  }
+
+  .price-description h3 {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .price-value {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .price-description p {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .price-category-title {
+    width: 110%;
+    margin-left: -5%;
+    height: 40px;
+    font-size: 16px;
+    padding: 0 0;
+  }
+  .pricing-content {
+    padding: 0 10px 0;
+  }
+  .testimonials {
+    padding: 10px 0 0;
+  }
+  .faq-feature, .brow-guide, details p {
+    width: 95%;
+  }
+  .faq.section-white p {
+    text-align: justify;
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing-image {
+    display: none;
+  }
+  .price-description h3, .price-simple-item h3 {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .pricing-container {
+    grid-template-columns: 1fr 0%;
+  }
+  .price-simple-item strong {
+    font-size: 24px;
+  }
+  .price-free {
+    font-size: 24px;
+  }
+  .price-free span {
+    font-size: 24px;
+    margin-left: 4px;
+  }
+  .price-value {
+    margin-top: -15px;
+  }
+
 }
