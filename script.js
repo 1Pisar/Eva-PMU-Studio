@@ -56,6 +56,67 @@ document.querySelectorAll('[data-open-faq]').forEach(link => {
   });
 });
 
+document.querySelectorAll('details').forEach(details => {
+  const feature = details.querySelector(':scope > .faq-feature');
+  const icon = details.querySelector(':scope > summary > i');
+
+  if (feature) {
+    let featureCloseTransition;
+
+    details.querySelector(':scope > summary')?.addEventListener('click', event => {
+      if (!details.open) return;
+
+      event.preventDefault();
+
+      if (feature.classList.contains('is-closing')) return;
+
+      feature.classList.remove('is-animating');
+      feature.classList.add('is-closing');
+
+      const closeDelay = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 0
+        : 350;
+
+      featureCloseTransition = window.setTimeout(() => {
+        details.open = false;
+        feature.classList.remove('is-closing');
+      }, closeDelay);
+    });
+
+    details.addEventListener('toggle', () => {
+      window.clearTimeout(featureCloseTransition);
+
+      feature.classList.remove('is-animating');
+
+      if (details.open) {
+        feature.classList.remove('is-closing');
+        void feature.offsetWidth;
+        feature.classList.add('is-animating');
+      }
+    });
+  }
+
+  if (!icon) return;
+
+  const setIcon = () => {
+    icon.classList.toggle('fa-plus', !details.open);
+    icon.classList.toggle('fa-minus', details.open);
+  };
+
+  let iconTransition;
+
+  setIcon();
+  details.addEventListener('toggle', () => {
+    window.clearTimeout(iconTransition);
+    icon.classList.add('is-changing');
+
+    iconTransition = window.setTimeout(() => {
+      setIcon();
+      icon.classList.remove('is-changing');
+    }, 120);
+  });
+});
+
 // HIGHLIGHT CURRENT SECTION
 const sections = [...document.querySelectorAll('main section[id]')];
 const navLinks = [...document.querySelectorAll('.main-nav a:not(.nav-cta)')];
@@ -103,6 +164,23 @@ next?.addEventListener('click', () => {
 });
 
 showResultGroup(0);
+
+const makeupCategory = document.querySelector('.price-category.makeup');
+const pricingImage = document.querySelector('.pricing-image');
+const tabletPricingQuery = window.matchMedia('(max-width: 1024px) and (min-width: 769px)');
+
+if (makeupCategory && pricingImage) {
+  const matchPricingImageHeight = () => {
+    pricingImage.style.height = tabletPricingQuery.matches
+      ? `${makeupCategory.getBoundingClientRect().height}px`
+      : '';
+  };
+
+  const pricingResizeObserver = new ResizeObserver(matchPricingImageHeight);
+  pricingResizeObserver.observe(makeupCategory);
+  tabletPricingQuery.addEventListener('change', matchPricingImageHeight);
+  matchPricingImageHeight();
+}
 
 // ================================
 // DEMO APPOINTMENT FORM
