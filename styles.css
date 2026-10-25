@@ -305,16 +305,12 @@ button,input,select,textarea {
   margin-right: 25px;
   border-radius: 48% 35px 35px 48%;
   border: 2px solid var(--gold-light);
-  box-shadow: 0 5px 18px rgba(76, 219, 255, 0.06);
-}
-
-.hero-visual:before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(224,247,249,.95), transparent 52%);
-  z-index: 2;
-  border-radius: 48% 35px 35px 48%;
+  filter: drop-shadow(rgb(236, 172, 82) 0px 0px 10px) drop-shadow(rgb(236, 172, 82) 0px 10px 20px) drop-shadow(rgb(236, 172, 82) 0px -2px 5px);
+  overflow: hidden;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(236, 172, 82);
+  border-image: none;
 }
 
 .hero-visual img {
@@ -351,6 +347,11 @@ button,input,select,textarea {
   justify-content: center;
   gap: 18px;
   margin: 0 auto 28px;
+}
+
+.about-me {
+  width: 120%;
+  margin-left: -10%;
 }
 
 .section-heading span {
@@ -473,6 +474,10 @@ button,input,select,textarea {
   align-items: center;
 }
 
+.about-laptop {
+  display: contents;
+}
+
 .about-photo-wrap {
   position: relative;
   border-radius: 4px 4px 0 0;
@@ -588,6 +593,7 @@ button,input,select,textarea {
 }
 
 .carousel-btn {
+  z-index: 9;
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -622,25 +628,34 @@ button,input,select,textarea {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 30px;
+  min-height: 495px;
 }
 
 .results-window {
   display: flex;
   flex-wrap: wrap;
-  width: 60%;
   height: clamp(320px, 60vh, 600px);
+  max-height: 494px;
 }
 
 .results-track {
   position: relative;
   width: 100%;
   height: 100%;
+  max-height: 494px;
+  min-width: 636px;
+
 }
 
 .results-track > .result-group {
   position: absolute;
   inset: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+    justify-content: center;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -649,8 +664,6 @@ button,input,select,textarea {
 }
 
 .results-track > .result-group.active {
-  display: flex;
-  height: 100%;
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -669,17 +682,16 @@ button,input,select,textarea {
 
 .result_1 img {
   display: flex;
-  width: 80%;
   max-height: calc((100% - 20px) / 3);
   object-fit: contain;
 }
 
 .result_1 img:nth-of-type(1) {
-  margin-left: -3vw;
+  margin-left: -40px;
 }
 
 .result_1 img:nth-of-type(3) {
-  margin-left: 3vw;
+  margin-left: 40px;
 }
 
 .result_2 {
@@ -1484,12 +1496,16 @@ footer a {
   }
 }
 
+.contact-line {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .hero-visual {
     height: 390px;
     width: 90%;
     margin: 0;
-    border-radius: 15% 0% 15% 15%;
+    border-radius: 15%;
   }
 
   .pricing-content {
@@ -1537,12 +1553,49 @@ footer a {
 }
 
 @media (max-width: 920px) {
+  .hero {
+    padding: 110px 0 20px;
+  }
   .desktop {
     display: none;
   }
   .mobile {
     display: flex;
   }
+
+  .hero-visual {
+    margin-left: 10%;
+  }
+
+  .about-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about-copy {
+    width: 50%;
+  }
+
+  .about-laptop {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5vw;
+  }
+
+  .about-photo-wrap {
+    width: 35%;
+    height: fit-content;
+  }
+
+  .script-title {
+    font-size: 36px !important;
+  }
+
+  .about-copy p {
+    font-size: 12px;
+  }
+
   .price-laptop-screen {
     display: contents;
   }
@@ -1719,23 +1772,6 @@ footer a {
     padding: 8px;
   }
 
-  .hero {
-    padding-top: 120px;
-  }
-
-  .hero-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-copy {
-    padding: 20px 0;
-    text-align: center;
-  }
-
-  .hero h1 {
-    font-size: 43px;
-  }
-
   .eyebrow-script {
     font-size: 54px;
   }
@@ -1747,18 +1783,6 @@ footer a {
   .hero-features {
     justify-content: center;
     gap: 20px;
-  }
-
-  .hero-visual {
-    height: 390px;
-    margin: 0;
-    border-radius: 0 0 35% 35%;
-  }
-
-  .hero-side-copy {
-    right: 15px;
-    top: 130px;
-    font-size: 28px;
   }
 
   .service-grid {
@@ -1779,13 +1803,16 @@ footer a {
   }
 
   .credentials {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-between;
   }
 
-  .results-track img {
-    flex-basis: calc((100% - 10px)/2);
-    width: calc((100% - 10px)/2);
+  .credentials div {
+    flex-direction: column;
+    text-align: center;
   }
 
   .testimonial-grid {
@@ -1800,11 +1827,48 @@ footer a {
     grid-template-columns: 1fr;
     gap: 30px;
   }
+
+  .about-copy {
+    justify-content: space-between;
+  }
+
+  .results-track {
+    min-width: 500px;
+  }
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding: 140px 0 20px;
+  }
   .testimonials {
     padding: 0;
+  }
+  .about-photo-wrap {
+    min-height: 325px;
+    min-width: 229px;
+  }
+  .about-photo-wrap img {
+    min-height: 325px;
+    min-width: 229px;
+  }
+  .hero-copy {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .hero-visual {
+    margin-left: 0;
+    width: 80%;
+    height: clamp(350px, 72vw, 556px);
+    filter: none;
   }
 }
 
@@ -1832,6 +1896,31 @@ footer a {
     min-height: 400px;
     height: 400px;
     object-position: center;
+  }
+}
+
+@media (max-width: 670px) {
+  .about-grid {
+    width: 100%;
+    padding: 5px;
+  }
+  .about-laptop {
+    gap: 2vw;
+  }
+  .about-copy .gold-btn {
+    margin-top: 0;
+  }
+  .about-btn {
+    padding: 8px 28px;
+  }
+  .credentials b {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 650px) {
+  .hero-side-copy {
+    display: none;
   }
 }
 
@@ -1863,7 +1952,39 @@ footer a {
   }
 }
 
-@media (max-width:520px) {
+@media (max-width: 560px) {
+  .credentials {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 70%;
+  }
+}
+
+@media (max-width: 520px) {
+  .about-laptop {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-photo-wrap {
+    width: 65%;
+    margin-bottom: 20px;
+  }
+
+  .script-title {
+    text-align: center;
+  }
+  
+  .about-btn {
+    padding: 15px 28px;
+  }
+  
+  .about-copy {
+    width: 100%;
+  }
+
+  
+
   .container {
     width: min(100% - 30px,1180px);
   }
@@ -1881,10 +2002,6 @@ footer a {
     letter-spacing: 3px;
   }
 
-  .hero {
-    padding-top: 105px;
-  }
-
   .hero h1 {
     font-size: 36px;
   }
@@ -1894,15 +2011,7 @@ footer a {
   }
 
   .hero-features {
-    gap: 8px;
-  }
-
-  .hero-features>div {
-    font-size: 7px;
-  }
-
-  .feature-icon {
-    font-size: 23px;
+    display: none;
   }
 
   .service-grid {
@@ -1924,10 +2033,6 @@ footer a {
 
   .service-card p, .service-card ul {
     font-size: 11px;
-  }
-
-  .credentials {
-    grid-template-columns: 1fr;
   }
 
   .results-track img {
@@ -1972,9 +2077,55 @@ footer a {
 }
 
 @media (max-width: 425px) {
+  .results-track {
+    min-width: 350px;
+    max-height: 300px;
+    margin-left: -35px;
+  }
+
+  .results-window {
+    height: 300px;
+  }
+
+  .results-sheet {
+    min-height: 0;
+    gap: 0;
+  }
+
+  .result_2  {
+    margin-left: 16px;
+  }
+
+  .result_2 img {
+    object-fit: cover;
+  }
+
+  .result_2 img:nth-of-type(2) {
+    margin-left: 0;
+  }
+
+  .hero-visual {
+    border-radius: 30px;
+  }
+  .hero-side-copy {
+    display: none;
+  }
   .round-photo {
     width: 100px;
     height: 100px;
+  }
+
+  .visual-text {
+    display: none;
+  }
+
+  .hero-visual img {
+    width: 100%;
+    border: none;
+  }
+
+  .hero-visual {
+    filter: none;
   }
 
   .service-card {
@@ -1984,7 +2135,6 @@ footer a {
   .section-heading h2 {
     font-size: 20px;
     text-align: center;
-    min-width: 185px;
   }
 
   .price-description p {
@@ -2058,6 +2208,15 @@ footer a {
   .contact-info {
     justify-content: center;
   }
+
+  .credentials {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+  }
+  .section-heading {
+    gap: 20px;
+  }
 }
 
 @media (max-width: 375px) {
@@ -2069,7 +2228,16 @@ footer a {
     flex-direction: row;
     justify-content: left;
   }
-  .mobile {
-    margin-left:30%;
+  .mobile-contact {
+    margin-left: 25%;
+  }
+  .eyebrow-script {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 320px) {
+  .pricing-heading {
+    margin-top: 38px;
   }
 }

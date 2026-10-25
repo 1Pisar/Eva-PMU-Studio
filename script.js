@@ -18,7 +18,9 @@ navToggle?.addEventListener('click', () => {
 });
 
 // Smooth scroll do sekcji z uwzględnieniem wysokości navbaru
-document.querySelectorAll('.main-nav a[href^="#"]').forEach(link => {
+document.querySelectorAll(
+  '.main-nav a[href^="#"], .gold-btn[href^="#"], .service-card > a[href^="#"]'
+).forEach(link => {
   link.addEventListener('click', function (e) {
     const target = document.querySelector(this.getAttribute('href'));
 
@@ -27,7 +29,8 @@ document.querySelectorAll('.main-nav a[href^="#"]').forEach(link => {
     e.preventDefault();
 
     const headerHeight = header ? header.offsetHeight : 0;
-    const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight - 25;
+    const targetPosition =
+      target.getBoundingClientRect().top + window.scrollY - headerHeight - 25;
 
     window.scrollTo({ top: targetPosition, behavior: 'smooth' });
     nav?.classList.remove('open');
@@ -48,9 +51,8 @@ document.querySelectorAll('[data-open-faq]').forEach(link => {
       history.pushState(null, '', `#${target.id}`);
     }
 
-    const scrollMargin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
-    const targetPosition =
-      target.getBoundingClientRect().top + window.scrollY - scrollMargin;
+    const headerHeight = header ? header.offsetHeight : 0;
+    const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight - 25;
 
     window.scrollTo({ top: targetPosition, behavior: 'smooth' });
   });
