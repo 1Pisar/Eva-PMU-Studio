@@ -19,7 +19,7 @@ navToggle?.addEventListener('click', () => {
 
 // Smooth scroll do sekcji z uwzględnieniem wysokości navbaru
 document.querySelectorAll(
-  '.main-nav a[href^="#"], .gold-btn[href^="#"], .service-card > a[href^="#"]'
+  '.main-nav a[href^="#"], .gold-btn[href^="#"], .service-card > a[href^="#"]:not([data-open-faq])'
 ).forEach(link => {
   link.addEventListener('click', function (e) {
     const target = document.querySelector(this.getAttribute('href'));
@@ -52,7 +52,7 @@ document.querySelectorAll('[data-open-faq]').forEach(link => {
     }
 
     const headerHeight = header ? header.offsetHeight : 0;
-    const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight - 25;
+    const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight - 65;
 
     window.scrollTo({ top: targetPosition, behavior: 'smooth' });
   });
@@ -190,6 +190,38 @@ if (makeupCategory && pricingImage) {
 
 const form = document.getElementById('bookingForm');
 const status = document.querySelector('.form-status');
+const preferredDateInput = form?.querySelector('input[name="date"]');
+const contactInput = form?.querySelector('input[name="contact"]');
+
+if (preferredDateInput instanceof HTMLInputElement) {
+  const today = new Date();
+  const localDate = [
+    today.getFullYear(),
+    String(today.getMonth() + 1).padStart(2, '0'),
+    String(today.getDate()).padStart(2, '0')
+  ].join('-');
+
+  preferredDateInput.min = localDate;
+}
+
+if (contactInput instanceof HTMLInputElement) {
+  const validateContact = () => {
+    const value = contactInput.value.trim();
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    const digitCount = (value.match(/\d/g) || []).length;
+    const isPhone = /^\+?[\d\s().-]+$/.test(value) && digitCount >= 7 && digitCount <= 15;
+
+    contactInput.setCustomValidity(
+      value && !isEmail && !isPhone
+        ? 'Enter a valid phone number (7–15 digits) or email address.'
+        : ''
+    );
+  };
+
+  validateContact();
+  contactInput.addEventListener('input', validateContact);
+  contactInput.addEventListener('change', validateContact);
+}
 
 form?.addEventListener('submit', e => {
 

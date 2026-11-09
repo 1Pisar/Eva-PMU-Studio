@@ -1338,8 +1338,13 @@ details > .faq-feature.is-closing {
   letter-spacing: .5px;
 }
 
-.booking-form label:nth-last-of-type(1),.booking-form button,.form-status {
+.booking-form label:nth-last-of-type(1),.booking-form button,.booking-form-booksy,.form-status {
   grid-column: 1/-1;
+}
+
+.booking-form-booksy {
+  text-align: center;
+  text-decoration: none;
 }
 
 .booking-form input,.booking-form select,.booking-form textarea {
@@ -1421,6 +1426,17 @@ footer a {
 .modal-card p {
   font-size: 13px;
   color: var(--muted);
+}
+
+.modal-booking-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.modal-booking-options .gold-btn {
+  width: 100%;
 }
 
 .instagram-qr {
