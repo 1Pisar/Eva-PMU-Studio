@@ -1,23 +1,12 @@
-// ================================
-// EVA PMU STUDIO — script.js
-// ================================
-
-
-// ================================
-// NAVIGATION
-// ================================
-
 const navToggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('.main-nav');
 const header = document.querySelector('.site-header');
 
-// Otwieranie / zamykanie menu mobilnego
 navToggle?.addEventListener('click', () => {
   const isOpen = nav.classList.toggle('open');
   navToggle.setAttribute('aria-expanded', String(isOpen));
 });
 
-// Smooth scroll do sekcji z uwzględnieniem wysokości navbaru
 document.querySelectorAll(
   '.main-nav a[href^="#"], .gold-btn[href^="#"], .service-card > a[href^="#"]:not([data-open-faq])'
 ).forEach(link => {
@@ -119,7 +108,6 @@ document.querySelectorAll('details').forEach(details => {
   });
 });
 
-// HIGHLIGHT CURRENT SECTION
 const sections = [...document.querySelectorAll('main section[id]')];
 const navLinks = [...document.querySelectorAll('.main-nav a:not(.nav-cta)')];
 
@@ -141,7 +129,6 @@ const observer = new IntersectionObserver(entries => {
 
 sections.forEach(section => observer.observe(section));
 
-// REAL RESULTS CAROUSEL
 const prev = document.querySelector('.carousel-btn.prev');
 const next = document.querySelector('.carousel-btn.next');
 const resultGroups = [...document.querySelectorAll('.results-track > .result-group')];
@@ -183,10 +170,6 @@ if (makeupCategory && pricingImage) {
   tabletPricingQuery.addEventListener('change', matchPricingImageHeight);
   matchPricingImageHeight();
 }
-
-// ================================
-// DEMO APPOINTMENT FORM
-// ================================
 
 const form = document.getElementById('bookingForm');
 const status = document.querySelector('.form-status');
@@ -236,11 +219,6 @@ form?.addEventListener('submit', e => {
   form.reset();
 
 });
-
-
-// ================================
-// APPOINTMENT MODAL
-// ================================
 
 const openModal = modal => {
 
@@ -298,11 +276,6 @@ document.addEventListener('keydown', e => {
   }
 
 });
-
-
-// ================================
-// CURRENT YEAR
-// ================================
 
 document.getElementById('year').textContent =
   new Date().getFullYear();
