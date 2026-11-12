@@ -714,15 +714,16 @@ button,input,select,textarea {
 
 .result_2 img {
   display: flex;
-  width: 85%;
+  width: 90%;
   max-height: calc((100% - 10px) / 2);
   object-fit: contain;
   border: 2px solid var(--white);
 }
 
 .result_2 img:nth-of-type(2) {
-  margin-top: -30px;
+  margin-top: -20px;
   margin-left: 4vw;
+  z-index: 1;
 }
 
 .result_2 img:nth-of-type(4) {
@@ -1572,9 +1573,11 @@ footer a {
   .hero {
     padding: 110px 0 20px;
   }
+
   .desktop {
     display: none;
   }
+
   .mobile {
     display: flex;
   }
@@ -1623,6 +1626,7 @@ footer a {
   .contact-copy {
     text-align: center;
   }
+
   .contact-info {
     flex-direction: row;
     justify-content: space-around;
@@ -1851,29 +1855,38 @@ footer a {
   .results-track {
     min-width: 500px;
   }
+
+  .result-group {
+    margin-left: -20px;
+  }
 }
 
 @media (max-width: 768px) {
   .hero {
     padding: 140px 0 20px;
   }
+
   .testimonials {
     padding: 0;
   }
+
   .about-photo-wrap {
     min-height: 325px;
     min-width: 229px;
   }
+
   .about-photo-wrap img {
     min-height: 325px;
     min-width: 229px;
   }
+
   .hero-copy {
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+
   .hero-grid {
     display: flex;
     flex-direction: column;
@@ -1885,6 +1898,31 @@ footer a {
     width: 80%;
     height: clamp(350px, 72vw, 556px);
     filter: none;
+  }
+
+  .results-sheet {
+    min-height: 60vw;
+  }
+
+  .results-window {
+    height: 60vw;
+  }
+
+  .result_2 {
+    margin-left: 0px;
+  }
+
+  .result_2 img {
+    width: 100%;
+  }
+
+  .result_2 .result-column2 {
+    margin-left: 0px;
+  }
+
+  .result_2 img:nth-of-type(2) {
+    margin-top: -10px;
+    margin-left: 2vw;
   }
 }
 
@@ -1920,17 +1958,65 @@ footer a {
     width: 100%;
     padding: 5px;
   }
+
   .about-laptop {
     gap: 2vw;
   }
+
   .about-copy .gold-btn {
     margin-top: 0;
   }
+
   .about-btn {
     padding: 8px 28px;
   }
+
   .credentials b {
     font-size: 12px;
+  }
+
+  .result-group{
+    margin-left: 0px;
+  }
+
+  .results-track {
+  min-width: calc(65vw + 25px);
+  }
+
+  .result_1 {
+    gap: 5px;
+  }
+
+  .result-column1 {
+    align-items: flex-end !important;
+  }
+
+  .result_1 img {
+    width: 65vw;
+  }
+
+  .result_1 img:nth-of-type(1) {
+    margin-left: -25px;
+  }
+
+  .result_1 img:nth-of-type(3) {
+    margin-left: 25px;
+  }
+
+  .result-column2 {
+    align-items: flex-start !important;
+  }
+
+  .result_2 img:nth-of-type(2) {
+    margin-left: 0;
+  }
+
+  .result_2 img {
+    width: 95%;
+  }
+
+  .results-sheet {
+    gap: 5px;
   }
 }
 
@@ -1974,6 +2060,15 @@ footer a {
     grid-template-columns: 1fr 1fr;
     width: 70%;
   }
+
+  .carousel-btn {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
 }
 
 @media (max-width: 520px) {
@@ -1998,8 +2093,6 @@ footer a {
   .about-copy {
     width: 100%;
   }
-
-  
 
   .container {
     width: min(100% - 30px,1180px);
@@ -2051,11 +2144,6 @@ footer a {
     font-size: 11px;
   }
 
-  .results-track img {
-    flex-basis: 100%;
-    width: 100%;
-  }
-
   .booking-form {
     grid-template-columns: 1fr;
   }
@@ -2093,39 +2181,18 @@ footer a {
 }
 
 @media (max-width: 425px) {
-  .results-track {
-    min-width: 350px;
-    max-height: 300px;
-    margin-left: -35px;
-  }
-
-  .results-window {
-    height: 300px;
-  }
-
   .results-sheet {
-    min-height: 0;
-    gap: 0;
-  }
-
-  .result_2  {
-    margin-left: 16px;
-  }
-
-  .result_2 img {
-    object-fit: cover;
-  }
-
-  .result_2 img:nth-of-type(2) {
-    margin-left: 0;
+    gap: 0px;
   }
 
   .hero-visual {
     border-radius: 30px;
   }
+
   .hero-side-copy {
     display: none;
   }
+
   .round-photo {
     width: 100px;
     height: 100px;
@@ -2230,6 +2297,7 @@ footer a {
     grid-template-columns: 1fr 1fr;
     width: 90%;
   }
+
   .section-heading {
     gap: 20px;
   }
@@ -2240,13 +2308,16 @@ footer a {
     flex-direction: column;
     gap: 10px;
   }
+
   .contact-info span {
     flex-direction: row;
     justify-content: left;
   }
+
   .mobile-contact {
     margin-left: 25%;
   }
+
   .eyebrow-script {
     font-size: 48px;
   }
